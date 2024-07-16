@@ -9,19 +9,24 @@
 /* Begin PBXBuildFile section */
 		278AC5AA2C46414700B2641B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5A92C46414700B2641B /* AppDelegate.swift */; };
 		278AC5AC2C46414700B2641B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5AB2C46414700B2641B /* SceneDelegate.swift */; };
-		278AC5AE2C46414700B2641B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5AD2C46414700B2641B /* ViewController.swift */; };
 		278AC5B02C46414800B2641B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 278AC5AF2C46414800B2641B /* Assets.xcassets */; };
 		278AC5B32C46414800B2641B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 278AC5B22C46414800B2641B /* Base */; };
+		278AC5BF2C4646EF00B2641B /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5BE2C4646EF00B2641B /* UserData.swift */; };
+		278AC5C12C46487F00B2641B /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5C02C46487F00B2641B /* MainVC.swift */; };
+		278AC5C42C4648A400B2641B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 278AC5C32C4648A400B2641B /* SnapKit */; };
+		278AC5C82C46491000B2641B /* UserEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5C72C46491000B2641B /* UserEditVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		278AC5A62C46414700B2641B /* NBC_iOS4th_LJH_PhoneAddressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBC_iOS4th_LJH_PhoneAddressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		278AC5A92C46414700B2641B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		278AC5AB2C46414700B2641B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		278AC5AD2C46414700B2641B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		278AC5AF2C46414800B2641B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		278AC5B22C46414800B2641B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		278AC5B42C46414800B2641B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		278AC5BE2C4646EF00B2641B /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		278AC5C02C46487F00B2641B /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		278AC5C72C46491000B2641B /* UserEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278AC5C42C4648A400B2641B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,14 +60,40 @@
 		278AC5A82C46414700B2641B /* NBC_iOS4th_LJH_PhoneAddressBook */ = {
 			isa = PBXGroup;
 			children = (
+				278AC5BA2C4646A900B2641B /* Model */,
+				278AC5BB2C4646B100B2641B /* View */,
+				278AC5BC2C4646B700B2641B /* Controller */,
 				278AC5A92C46414700B2641B /* AppDelegate.swift */,
 				278AC5AB2C46414700B2641B /* SceneDelegate.swift */,
-				278AC5AD2C46414700B2641B /* ViewController.swift */,
 				278AC5AF2C46414800B2641B /* Assets.xcassets */,
 				278AC5B12C46414800B2641B /* LaunchScreen.storyboard */,
 				278AC5B42C46414800B2641B /* Info.plist */,
 			);
 			path = NBC_iOS4th_LJH_PhoneAddressBook;
+			sourceTree = "<group>";
+		};
+		278AC5BA2C4646A900B2641B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				278AC5BE2C4646EF00B2641B /* UserData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		278AC5BB2C4646B100B2641B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				278AC5C02C46487F00B2641B /* MainVC.swift */,
+				278AC5C72C46491000B2641B /* UserEditVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		278AC5BC2C4646B700B2641B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +112,9 @@
 			dependencies = (
 			);
 			name = NBC_iOS4th_LJH_PhoneAddressBook;
+			packageProductDependencies = (
+				278AC5C32C4648A400B2641B /* SnapKit */,
+			);
 			productName = NBC_iOS4th_LJH_PhoneAddressBook;
 			productReference = 278AC5A62C46414700B2641B /* NBC_iOS4th_LJH_PhoneAddressBook.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +143,9 @@
 				Base,
 			);
 			mainGroup = 278AC59D2C46414600B2641B;
+			packageReferences = (
+				278AC5C22C4648A400B2641B /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 278AC5A72C46414700B2641B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,8 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				278AC5AE2C46414700B2641B /* ViewController.swift in Sources */,
+				278AC5C12C46487F00B2641B /* MainVC.swift in Sources */,
+				278AC5C82C46491000B2641B /* UserEditVC.swift in Sources */,
 				278AC5AA2C46414700B2641B /* AppDelegate.swift in Sources */,
+				278AC5BF2C4646EF00B2641B /* UserData.swift in Sources */,
 				278AC5AC2C46414700B2641B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +387,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		278AC5C22C4648A400B2641B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		278AC5C32C4648A400B2641B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 278AC5C22C4648A400B2641B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 278AC59E2C46414600B2641B /* Project object */;
 }
