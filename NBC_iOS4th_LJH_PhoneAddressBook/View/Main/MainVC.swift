@@ -11,20 +11,15 @@ import UIKit
 import SnapKit
 
 class MainVC: UIViewController {
-    //navigationBar 생성
-    let navigationBar: UINavigationBar = {
-        let navigationBar = UINavigationBar()
-        return navigationBar
-    }()
 
     let mainTableView = MainTableView(frame: .zero, style: .plain)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
 
-        self.view.addSubview(navigationBar)
-        self.view.addSubview(mainTableView)
+        view.backgroundColor = .white
+
+        view.addSubview(mainTableView)
 
 
         navigationBarSetup()
@@ -38,23 +33,15 @@ class MainVC: UIViewController {
 
     //navigationBarSetup 설정
     private func navigationBarSetup() {
-        let navigationItem = UINavigationItem(title: "친구 목록")
+//        let navigationItem = UINavigationItem(title: "친구 목록")
         let addBtn = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(addBtnTapped))
-
-        navigationItem.setRightBarButtonItems([addBtn], animated: true)
-        navigationBar.setItems([navigationItem], animated: false)
+        self.navigationItem.rightBarButtonItem = addBtn
+        self.title = "친구 목록"
     }
 
     private func setupConstraints() {
-        //navigationBar 제약조건
-        navigationBar.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-        }
-
         mainTableView.snp.makeConstraints {
-            $0.top.equalTo(navigationBar.snp.bottom).offset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
@@ -62,7 +49,11 @@ class MainVC: UIViewController {
     }
 
     // addBtnTapped 메서드 생성
-    @objc func addBtnTapped() {
-
+    @objc private func addBtnTapped() {
+        let userEditVC = UserEditVC()
+        let backBtn = UIBarButtonItem()
+        backBtn.title = "Back"
+        self.navigationItem.backBarButtonItem = backBtn
+        self.navigationController?.pushViewController(userEditVC, animated: true)
     }
 }

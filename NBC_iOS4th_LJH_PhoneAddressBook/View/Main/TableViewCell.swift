@@ -41,20 +41,20 @@ class TableViewCell: UITableViewCell {
     func setupLayout() {
         // userImageView 제약조건
         userImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(30)
             $0.width.height.equalTo(80)
             $0.centerY.equalToSuperview()
         }
 
         // userNameLabel 제약조건
         userNameLabel.snp.makeConstraints {
-            $0.leading.equalTo(userImageView.snp.trailing).offset(20)
+            $0.leading.equalTo(userImageView.snp.trailing).offset(50)
             $0.centerY.equalTo(userImageView.snp.centerY)
         }
 
         // userNumLabel 제약조건
         userNumLabel.snp.makeConstraints {
-            $0.leading.equalTo(userNameLabel.snp.trailing).offset(20)
+            $0.leading.equalTo(userNameLabel.snp.trailing).offset(30)
             $0.centerY.equalTo(userImageView.snp.centerY)
         }
     }
