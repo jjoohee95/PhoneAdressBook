@@ -24,7 +24,7 @@ func ramdomPokemonImage(completion: @escaping (UIImage?) -> Void) {
             }
             return
         }
-        
+
         guard let data = data,
               let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
               let sprites = json["sprites"] as? [String: Any],

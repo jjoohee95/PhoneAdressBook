@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol UserEditDelegate: AnyObject {
+    func didSaveUserData()
+}

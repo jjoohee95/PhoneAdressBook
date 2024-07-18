@@ -8,12 +8,12 @@ import Foundation
 import UIKit
 
 struct UserData: Decodable {
-    let userImage: UIImage
+    let userImage: Data  // 이미지 데이터를 Data 형식으로 저장
     let userName: String
     let userNum: String
 
     private enum CodingKeys: String, CodingKey {
-        case userName, userNum, userImageData
+        case userName, userNum, userImageData  // userImageData로 수정
     }
 
     init(from decoder: Decoder) throws {
@@ -21,11 +21,13 @@ struct UserData: Decodable {
         self.userName = try container.decode(String.self, forKey: .userName)
         self.userNum = try container.decode(String.self, forKey: .userNum)
 
-        if let imageData = try container.decodeIfPresent(Data.self, forKey: .userImageData),
-           let image = UIImage(data: imageData) {
-            self.userImage = image
+        if let imageData = try container.decodeIfPresent(Data.self, forKey: .userImageData) {
+            self.userImage = imageData
         } else {
-            self.userImage = UIImage(named: "defaultImage") ?? UIImage()
+            // 기본 이미지 데이터 설정
+            self.userImage = UIImage(named: "defaultImage")?.pngData() ?? Data()
+            
         }
     }
 }
+

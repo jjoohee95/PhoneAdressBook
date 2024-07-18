@@ -1,13 +1,3 @@
-
-//  DataManager.swift
-//  NBC_iOS4th_LJH_PhoneAddressBook
-//
-//  Created by Lee-Juhee on 7/18/24.
-
-// DataManager.swift
-
-// DataManager.swift
-
 import UIKit
 import CoreData
 
@@ -16,7 +6,7 @@ class DataManager {
     static let shared = DataManager()
 
     // Core Data를 이용한 사용자 데이터 저장
-    func saveUserData(userName: String, userNum: String, userImage: UIImage) {
+    func saveUserData(userName: String, userNum: String, userImage: Data) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
 
@@ -30,9 +20,8 @@ class DataManager {
         userDataManagedObject.userName = userName
         userDataManagedObject.userNum = userNum
 
-        if let imageData = userImage.jpegData(compressionQuality: 1.0) {
-                    userDataManagedObject.userImage = imageData 
-                }
+        // 이미지 저장
+        userDataManagedObject.userImage = userImage
 
         do {
             try context.save()
@@ -42,23 +31,20 @@ class DataManager {
         }
     }
 
-    // JSON 데이터 디코딩
-    func loadUsers(from jsonData: Data) -> [UserData]? {
-        let decoder = JSONDecoder()
+    func readAllData() -> [Contact] {
+        var list: [Contact] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return list }
+        let context = appDelegate.persistentContainer.viewContext
         do {
-            let users = try decoder.decode([UserData].self, from: jsonData)
-            return users
+            let contacts = try context.fetch(Contact.fetchRequest())
+            for i in contacts {
+                list.append(i)
+            }
+
         } catch {
-            print("JSON 디코딩 실패: \(error.localizedDescription)")
-            return nil
+            print("데이터 읽기 실패")
         }
+        return list
     }
 
-    // 파일에서 JSON 데이터 로드
-    func loadJSONFromFile(named fileName: String) -> Data? {
-        if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
-            return try? Data(contentsOf: URL(fileURLWithPath: path))
-        }
-        return nil
-    }
 }

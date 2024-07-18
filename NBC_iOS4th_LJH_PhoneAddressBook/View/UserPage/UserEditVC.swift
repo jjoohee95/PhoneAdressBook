@@ -1,20 +1,8 @@
-//
-//  UserEditVC.swift
-//  NBC_iOS4th_LJH_PhoneAddressBook
-//
-//  Created by Lee-Juhee on 7/16/24.
-//
-// 네비게이션 바 (뒤로, 타이틀, 적용)
-// 프로필 이미지
-// 랜덤 이미지 생성 버튼
-// 이름 텍스트필드
-// 번호 텍스트 필드
-
 import UIKit
 import SnapKit
 
 class UserEditVC: UIViewController {
-
+    weak var delegate: UserEditDelegate?
 
     let userProfileImage: UIImageView = {
         let imageView = UIImageView()
@@ -56,38 +44,32 @@ class UserEditVC: UIViewController {
         view.addSubview(nameTextView)
         view.addSubview(numTextView)
 
-
         UserNaviBarSetup()
         UserSetupConstraints()
     }
 
-    //navigationBarSetup 설정
     private func UserNaviBarSetup() {
-        //        let navigationItem = UINavigationItem(title: "친구 목록")
-        let okBtn = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(okbtnTapped))
+        let okBtn = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(okBtnTapped))
         self.navigationItem.rightBarButtonItem = okBtn
         self.title = "연락처 추가"
     }
-    func UserSetupConstraints() {
-        //userProfileImage 제약조건
+
+    private func UserSetupConstraints() {
         userProfileImage.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
             $0.centerX.equalToSuperview()
             $0.width.height.equalTo(160)
         }
-        //randomImageBtn 제약조건
         randomImageBtn.snp.makeConstraints {
             $0.top.equalTo(userProfileImage.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
         }
-        //nameTextView 제약조건
         nameTextView.snp.makeConstraints {
             $0.top.equalTo(randomImageBtn.snp.bottom).offset(30)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
             $0.height.equalTo(40)
         }
-        //numTextView 제약조건
         numTextView.snp.makeConstraints {
             $0.top.equalTo(nameTextView.snp.bottom).offset(30)
             $0.leading.equalToSuperview().offset(20)
@@ -96,15 +78,21 @@ class UserEditVC: UIViewController {
         }
     }
 
-    // addBtnTapped 메서드 생성
-    @objc func okbtnTapped() {
+    @objc private func okBtnTapped() {
         guard let userName = nameTextView.text,
               let userNum = numTextView.text,
-              let userImage = userProfileImage.image
+              let userImage = userProfileImage.image,
+              let imageData = userImage.pngData()
         else {
             return
         }
-        DataManager.shared.saveUserData(userName: userName, userNum: userNum, userImage: userImage)
+        DataManager.shared.saveUserData(userName: userName, userNum: userNum, userImage: imageData)
+
+        delegate?.didSaveUserData()
+
+        if let navigationController = self.navigationController {
+            navigationController.popViewController(animated: true)
+        }
     }
 
     @objc func randomImageBtntapped(){
@@ -115,4 +103,3 @@ class UserEditVC: UIViewController {
         }
     }
 }
-

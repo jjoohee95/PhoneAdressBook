@@ -17,6 +17,6 @@ extension Contact {
 
     @NSManaged public var userName: String?
     @NSManaged public var userNum: String?
-    @NSManaged public var userImage: Data? 
+    @NSManaged public var userImage: Data?
 
 }
