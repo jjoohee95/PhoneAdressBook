@@ -15,6 +15,7 @@ import SnapKit
 
 class UserEditVC: UIViewController {
 
+
     let userProfileImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -49,7 +50,7 @@ class UserEditVC: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        
+
         view.addSubview(userProfileImage)
         view.addSubview(randomImageBtn)
         view.addSubview(nameTextView)
@@ -62,8 +63,8 @@ class UserEditVC: UIViewController {
 
     //navigationBarSetup 설정
     private func UserNaviBarSetup() {
-//        let navigationItem = UINavigationItem(title: "친구 목록")
-        let okBtn = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(btnTapped))
+        //        let navigationItem = UINavigationItem(title: "친구 목록")
+        let okBtn = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(okbtnTapped))
         self.navigationItem.rightBarButtonItem = okBtn
         self.title = "연락처 추가"
     }
@@ -96,15 +97,22 @@ class UserEditVC: UIViewController {
     }
 
     // addBtnTapped 메서드 생성
-    @objc func btnTapped() {
-
-    }
-    @objc  func backBtnTapped() {
-
+    @objc func okbtnTapped() {
+        guard let userName = nameTextView.text,
+              let userNum = numTextView.text,
+              let userImage = userProfileImage.image
+        else {
+            return
+        }
+        DataManager.shared.saveUserData(userName: userName, userNum: userNum, userImage: userImage)
     }
 
     @objc func randomImageBtntapped(){
-
+        ramdomPokemonImage { [weak self] image in
+            DispatchQueue.main.async {
+                self?.userProfileImage.image = image
+            }
+        }
     }
 }
 

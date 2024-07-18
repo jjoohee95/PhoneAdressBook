@@ -11,7 +11,7 @@ import SnapKit
 class MainTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
 
     //userData 배열
-    var userData: [(userImage: UIImage, userName: String, userNum: String)] = []
+    var userData: [(userImage: UIImage, userName: String, userNum: String)] = [] 
 
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)

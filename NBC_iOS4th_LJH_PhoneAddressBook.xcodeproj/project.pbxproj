@@ -17,6 +17,11 @@
 		278AC5C82C46491000B2641B /* UserEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5C72C46491000B2641B /* UserEditVC.swift */; };
 		278AC5CA2C46868400B2641B /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5C92C46868400B2641B /* MainTableView.swift */; };
 		278AC5CD2C4686A000B2641B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5CC2C4686A000B2641B /* TableViewCell.swift */; };
+		278AC5D02C489CDC00B2641B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5CF2C489CDC00B2641B /* DataManager.swift */; };
+		278AC5D42C48E56500B2641B /* PokemonIMage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5D32C48E56500B2641B /* PokemonIMage.swift */; };
+		278AC5D72C48F81B00B2641B /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5D52C48F81B00B2641B /* UserData.xcdatamodeld */; };
+		278AC5DA2C48FD3500B2641B /* Contact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5D82C48FD3500B2641B /* Contact+CoreDataClass.swift */; };
+		278AC5DB2C48FD3500B2641B /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AC5D92C48FD3500B2641B /* Contact+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +36,11 @@
 		278AC5C72C46491000B2641B /* UserEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditVC.swift; sourceTree = "<group>"; };
 		278AC5C92C46868400B2641B /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
 		278AC5CC2C4686A000B2641B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		278AC5CF2C489CDC00B2641B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		278AC5D32C48E56500B2641B /* PokemonIMage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonIMage.swift; sourceTree = "<group>"; };
+		278AC5D62C48F81B00B2641B /* data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = data.xcdatamodel; sourceTree = "<group>"; };
+		278AC5D82C48FD3500B2641B /* Contact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataClass.swift"; sourceTree = "<group>"; };
+		278AC5D92C48FD3500B2641B /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +58,8 @@
 		278AC59D2C46414600B2641B = {
 			isa = PBXGroup;
 			children = (
+				278AC5D82C48FD3500B2641B /* Contact+CoreDataClass.swift */,
+				278AC5D92C48FD3500B2641B /* Contact+CoreDataProperties.swift */,
 				278AC5A82C46414700B2641B /* NBC_iOS4th_LJH_PhoneAddressBook */,
 				278AC5A72C46414700B2641B /* Products */,
 			);
@@ -80,6 +92,9 @@
 			isa = PBXGroup;
 			children = (
 				278AC5BE2C4646EF00B2641B /* UserData.swift */,
+				278AC5CF2C489CDC00B2641B /* DataManager.swift */,
+				278AC5D32C48E56500B2641B /* PokemonIMage.swift */,
+				278AC5D52C48F81B00B2641B /* UserData.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,8 +210,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				278AC5CA2C46868400B2641B /* MainTableView.swift in Sources */,
+				278AC5DA2C48FD3500B2641B /* Contact+CoreDataClass.swift in Sources */,
+				278AC5DB2C48FD3500B2641B /* Contact+CoreDataProperties.swift in Sources */,
+				278AC5D02C489CDC00B2641B /* DataManager.swift in Sources */,
 				278AC5C12C46487F00B2641B /* MainVC.swift in Sources */,
 				278AC5C82C46491000B2641B /* UserEditVC.swift in Sources */,
+				278AC5D72C48F81B00B2641B /* UserData.xcdatamodeld in Sources */,
+				278AC5D42C48E56500B2641B /* PokemonIMage.swift in Sources */,
 				278AC5AA2C46414700B2641B /* AppDelegate.swift in Sources */,
 				278AC5BF2C4646EF00B2641B /* UserData.swift in Sources */,
 				278AC5CD2C4686A000B2641B /* TableViewCell.swift in Sources */,
@@ -430,6 +450,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		278AC5D52C48F81B00B2641B /* UserData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				278AC5D62C48F81B00B2641B /* data.xcdatamodel */,
+			);
+			currentVersion = 278AC5D62C48F81B00B2641B /* data.xcdatamodel */;
+			path = UserData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 278AC59E2C46414600B2641B /* Project object */;
 }
