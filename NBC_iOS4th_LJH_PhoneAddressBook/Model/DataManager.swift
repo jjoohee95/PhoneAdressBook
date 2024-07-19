@@ -1,3 +1,10 @@
+//
+//  DataManager.swift
+//  NBC_iOS4th_LJH_PhoneAddressBook
+//
+//  Created by Lee-Juhee on 7/18/24.
+//
+
 import UIKit
 import CoreData
 
@@ -7,6 +14,11 @@ class DataManager {
 
     // Core Data를 이용한 사용자 데이터 저장
     func saveUserData(userName: String, userNum: String, userImage: Data) {
+        guard !userName.isEmpty, !userNum.isEmpty else {
+                    print("이름이나 번호가 비어 있어 저장하지 않습니다.")
+                    return
+                }
+
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
 
@@ -35,11 +47,13 @@ class DataManager {
         var list: [Contact] = []
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return list }
         let context = appDelegate.persistentContainer.viewContext
-        do {
-            let contacts = try context.fetch(Contact.fetchRequest())
-            for i in contacts {
-                list.append(i)
-            }
+                do {
+                    // 모든 'Contact' 객체 가져오기
+                    let contacts = try context.fetch(Contact.fetchRequest()) as! [Contact]
+                    // 유효한 데이터만 필터링
+                    list = contacts.filter { !($0.userName?.isEmpty ?? true) && !($0.userNum?.isEmpty ?? true) }
+                    // 이름 기준으로 정렬
+                    list.sort { ($0.userName ?? "") < ($1.userName ?? "") }
 
         } catch {
             print("데이터 읽기 실패")

@@ -2,7 +2,7 @@
 //  TableViewCell.swift
 //  NBC_iOS4th_LJH_PhoneAddressBook
 //
-//  Created by t2023-m0023 on 7/16/24.
+//  Created by Lee-Juhee on 7/16/24.
 //
 
 import UIKit
@@ -58,7 +58,7 @@ class TableViewCell: UITableViewCell {
             $0.centerY.equalTo(userImageView.snp.centerY)
         }
     }
-
+    // 셀을 구성하는 메서드
     func configure(image: UIImage, name: String, phone: String) {
         userImageView.image = image
         userNameLabel.text = name

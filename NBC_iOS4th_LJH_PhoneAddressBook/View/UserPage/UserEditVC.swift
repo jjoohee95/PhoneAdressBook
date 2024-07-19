@@ -1,8 +1,17 @@
+//
+//  UserEditVC.swift
+//  NBC_iOS4th_LJH_PhoneAddressBook
+//
+//  Created by Lee-Juhee on 7/16/24.
+//
+
 import UIKit
 import SnapKit
 
 class UserEditVC: UIViewController {
+    
     weak var delegate: UserEditDelegate?
+    var user: Contact?
 
     let userProfileImage: UIImageView = {
         let imageView = UIImageView()
@@ -36,7 +45,6 @@ class UserEditVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .white
 
         view.addSubview(userProfileImage)
@@ -46,12 +54,24 @@ class UserEditVC: UIViewController {
 
         UserNaviBarSetup()
         UserSetupConstraints()
+
+        if let user = user {
+            userProfileImage.image = UIImage(data: user.userImage!)
+            nameTextView.text = user.userName
+            numTextView.text = user.userNum
+        }
+
+        // Set delegate for nameTextView
+        nameTextView.delegate = self
+
+        // Initial title setup
+        updateTitle()
     }
 
     private func UserNaviBarSetup() {
-        let okBtn = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(okBtnTapped))
+        let okBtn = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(saveBtnTapped))
         self.navigationItem.rightBarButtonItem = okBtn
-        self.title = "연락처 추가"
+        // Title will be set dynamically based on textView content
     }
 
     private func UserSetupConstraints() {
@@ -78,7 +98,7 @@ class UserEditVC: UIViewController {
         }
     }
 
-    @objc private func okBtnTapped() {
+    @objc private func saveBtnTapped() {
         guard let userName = nameTextView.text,
               let userNum = numTextView.text,
               let userImage = userProfileImage.image,
@@ -86,20 +106,46 @@ class UserEditVC: UIViewController {
         else {
             return
         }
-        DataManager.shared.saveUserData(userName: userName, userNum: userNum, userImage: imageData)
+        if let user = user {
+            // 기존 사용자 데이터 업데이트
+            user.userName = userName
+            user.userNum = userNum
+            user.userImage = imageData
+
+            do {
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                try context.save()
+                print("User data updated successfully")
+            } catch {
+                print("Failed to update user data: \(error.localizedDescription)")
+            }
+        } else {
+            // 새 사용자 데이터 저장
+            DataManager.shared.saveUserData(userName: userName, userNum: userNum, userImage: imageData)
+        }
 
         delegate?.didSaveUserData()
-
-        if let navigationController = self.navigationController {
-            navigationController.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
-
-    @objc func randomImageBtntapped(){
+    // 랜덤 이미지 버튼 클릭 시 호출되는 메서드
+    @objc func randomImageBtntapped() {
         ramdomPokemonImage { [weak self] image in
             DispatchQueue.main.async {
                 self?.userProfileImage.image = image
             }
+        }
+    }
+    // 텍스트 뷰 변경 시 타이틀 업데이트
+    private func updateTitle() {
+        self.title = nameTextView.text.isEmpty ? "연락처 추가" : nameTextView.text
+    }
+}
+
+// UITextViewDelegate 프로토콜 구현
+extension UserEditVC: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if textView == nameTextView {
+            updateTitle()
         }
     }
 }

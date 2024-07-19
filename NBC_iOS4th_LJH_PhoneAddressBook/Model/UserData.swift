@@ -13,7 +13,7 @@ struct UserData: Decodable {
     let userNum: String
 
     private enum CodingKeys: String, CodingKey {
-        case userName, userNum, userImageData  // userImageData로 수정
+        case userName, userNum, userImageData
     }
 
     init(from decoder: Decoder) throws {
